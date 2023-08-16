@@ -19,19 +19,3 @@ export const counter = createSlice({
 export const { increment, decrement } = counter.actions;
 
 export default counter.reducer;
-
-
-
-
-// const counterReducer = (state = 0, action) => {
-//     switch (action.type) {
-//         case 'INCREMENT':
-//             return state + 1;
-//         case 'DECREMENT':
-//             return state - 1;
-//         default:
-//             return state;
-//     }
-// }
-
-// export default counterReducer;

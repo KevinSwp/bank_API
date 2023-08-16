@@ -1,0 +1,42 @@
+.navigation {
+    background-color: white;
+
+    .blockLinks {
+        .links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3px 20px;
+            margin: 0;
+
+            .logo {
+                max-width: 100%;
+                width: 200px;
+            }
+
+            li {
+                list-style: none;
+
+                .icon{
+                    vertical-align: middle;
+                    padding-right: 5px;
+                }
+
+                a {
+                    color: black;
+                    text-decoration: none;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
+            }
+
+            .sign{
+                display: flex;
+
+                .exit {
+                    padding-left: 0.7rem;
+                }
+            }
+        }
+    }
+}

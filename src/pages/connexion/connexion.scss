@@ -1,0 +1,54 @@
+.connexion {
+    background-color: #12002b;
+    padding: 3rem 0 0 0;
+    height: 85vh;
+    font-weight: bold;
+
+    .connexionForm {
+        background-color: white;
+        padding: 2rem;
+        width: 255px;
+        margin: auto;
+
+        .form {
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+            }
+              
+              svg {
+                width: 20px;
+                height: 20px; 
+                }
+
+            h1{
+                margin: auto;
+                font-size: 1.5em;
+                width: 80px;
+            }
+
+            input{
+                padding: 5px;
+    font-size: 1.2rem;
+            }
+
+            .remember{
+                font-weight: normal;
+            }
+
+            button {
+                width: 100%;
+                padding: 8px;
+                font-size: 1.1rem;
+                font-weight: bold;
+                margin-top: 1rem;
+                border-color: transparent;
+                background-color: #00bc77;
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+    }
+}

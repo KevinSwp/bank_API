@@ -1,33 +1,56 @@
-import React, {useEffect } from 'react';
-import DisplayCounter from '../../components/displayCounter/displayCounter';
-import Navigation from '../nav/Navigation';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import Navigation from '../../components/nav/Navigation'
+import useAboutLogic from '../../hooks/logics/useAboutLogic';
+import Footer from '../../components/footer/footer';
+// import DisplayCounter from '../../components/displayCounter/DisplayCounter';
 
+
+const handleChangeUserInformations = () => {
+  fetch('http://localhost:3001/api/user/profile', {
+    method : 'PUT',
+    body: {}
+  })
+  .then(response => response.json())
+  .then(data => {
+
+  })
+  .catch(error => {
+      console.error("Erreur lors de la récupération du token:", error);
+  });
+}
+
+/**
+ * Defining the About component
+ */
 function About() {
-
-  const user = useSelector(state => state.user);
-
-  useEffect(() => {
-
-    fetch('api/1', { 
-      method: 'GET',
-      headers: {
-          'Content-type': 'application/json',
-          'Authorization': `Bearer ${user.token}`, 
-      },
-      // body: JSON.stringify({
-      //   email : 'john.doe@gmail.com',
-      //   password : 'asdasdasdasdasd'
-      // })
-  })
-    .then(response => response.json())
- 
-  })
+  const { user, textVisible, handleTextRemove } = useAboutLogic();
 
   return (
-    <div className="counter-display">
+    <div>
       <Navigation />
-      <DisplayCounter />
+
+      {/* Conditionally rendering content based on the user's token presence */}
+      {user.token &&
+        <>
+          {/* Conditionally displaying a text if textVisible is true */}
+          {textVisible &&
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br />
+              Quaerat quasi tempore ea praesentium optio qui minima ipsam distinctio ab <br />
+              repudiandae dolore itaque, animi vero nisi aspernatur adipisci possimus explicabo eveniet?</p>
+          }
+          <button onClick={handleTextRemove}>Effacer</button>
+        </>
+      }
+
+      {/* <DisplayCounter /> */}
+
+
+      <form >
+        <input type="text" name="username" id="username" placeholder="prenom"/>
+        <input type="text" name="username" id="username" placeholder="nom"/>        
+        <button type="submit" onClick={handleChangeUserInformations}>Modifier</button>
+      </form>
+      <Footer />
     </div>
   );
 }
