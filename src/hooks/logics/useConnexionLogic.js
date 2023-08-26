@@ -1,43 +1,67 @@
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { saveToken } from '../../reducers/userReducer';
-import userData from '../../data/data';
-import useFetch from '../useFetch';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { saveToken } from "../../reducers/userReducer";
+// import userData from "../../data/data";
+// import useFetch from "../useFetch";
 
 const useConnexionLogic = (userName, userPassword) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const { data, loading, error } = useFetch('http://localhost:3001/api/login');
+  const user = useSelector((state) => state.user);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        const email = userName;
-        const password = userPassword;
-        const user = userData.find(u => u.email === email && u.password === password);
-        
-        console.log('Found User:', user);
-        console.log('Loading Status:', loading);
-        console.log('Fetch Error:', error);
-        console.log('API Response Data:', data);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-        if (user && !loading && !error) {
-            const token = data[0];
-            console.log("Token obtenu:", token);
-            console.log("Loading:", loading, "Error:", error);
+  //const { data, loading, error } = useFetch(
+  //  "http://localhost:3001/api/v1/user/login"
+  //);
 
-            dispatch(saveToken({
-                token: token,
-                username: `${user.firstName} ${user.lastName}`
-            }));
-            navigate('/about');
-        } else {
-            console.error("Incorrecte"); // Error message indicating failed login attempt
-        }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const email = userName;
+    const password = userPassword;
+
+    //if(conditions pour check email et password){}
+
+    //const user = userData.find(
+    //  (u) => u.email === email && u.password === password
+    //);
+
+    fetch("http://localhost:3001/api/v1/user/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setLoading(false);
+
+        dispatch(
+          saveToken({
+            token: data.body.token,
+            username: ``,
+          })
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error);
+      });
+  };
+
+  useEffect(() => {
+    if (user.token) {
+      navigate("/profil");
     }
+  }, [user, navigate]);
 
-    return { handleSubmit, loading, error };
+  return { handleSubmit, loading, error };
 };
 
 export default useConnexionLogic;

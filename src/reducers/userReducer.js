@@ -1,5 +1,3 @@
-// Importing the `createSlice` utility function from "@reduxjs/toolkit" 
-// to create a slice of the Redux store with automatic action creators and reducers
 import { createSlice } from "@reduxjs/toolkit";
 
 // Creating a slice named "user" for the user related state and logic in the Redux store
@@ -21,7 +19,6 @@ const user = createSlice({
     saveToken: (state, action) => {
       state.token = action.payload.token;
       state.username = action.payload.username;
-
 
       try {
         localStorage.setItem('token', JSON.stringify({
