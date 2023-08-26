@@ -28,13 +28,17 @@ const user = createSlice({
       } catch (e) {
         console.error('Could not save to local storage:', e);
       }
+    },
 
+    saveUserDetails: (state, action) => {
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
     }
   }
 });
 
 // Exporting generated action creators to be used in components or middlewares
-export const { saveToken } = user.actions;
+export const { saveToken, saveUserDetails } = user.actions;
 
 // Exporting the generated reducer function as default to be used in the Redux store
 export default user.reducer;
