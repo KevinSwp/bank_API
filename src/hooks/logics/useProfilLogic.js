@@ -3,16 +3,24 @@ import { useEffect, useState } from "react";
 
 import { saveUserDetails } from "../../reducers/userReducer";
 
+/**
+ * Custom hook to manage the user's profile logic.
+ */
 const useProfilLogic = () => {
-  // Accès aux données de l'utilisateur depuis le Redux store
+  // Access user data from the Redux store
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  // Local state management for firstName and lastName fields
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
+  // Local state for profile editing mode
   const [isEditing, setIsEditing] = useState(false);
 
-
+  /**
+   * Handles updating the user's first name and last name.
+   */
   const handleEditName = () => {
     fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'PUT',
@@ -28,19 +36,21 @@ const useProfilLogic = () => {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
+          // Update user details in the Redux store
           dispatch(saveUserDetails({
             firstName: data.body.firstName,
             lastName: data.body.lastName
           }));
         } else {
-          console.error("Erreur lors de la mise à jour du profil :", data.message);
+          console.error("Error updating the profile:", data.message);
         }
       })
       .catch(error => {
-        console.error("Erreur lors de l'envoi de la requête PUT:", error);
+        console.error("Error with the PUT request:", error);
       });
   };
 
+  // Fetch user details on component mount
   useEffect(() => {
     fetch("http://localhost:3001/api/v1/user/profile", {
       method: "POST",
@@ -50,6 +60,7 @@ const useProfilLogic = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        // Update user details in the Redux store
         dispatch(saveUserDetails({
           firstName: data.body.firstName,
           lastName: data.body.lastName

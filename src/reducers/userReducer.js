@@ -11,11 +11,8 @@ const user = createSlice({
     username: '',        // To store the name of the authenticated user
   },
 
-  // Reducers are functions that determine changes to the state. 
-  // They will be auto-generated into action creators based on their function names.
   reducers: {
-    // Saves the provided `token` and `username` to the state and 
-    // sets the `isLoading` flag back to false
+    // Saves the provided `token` and `username` to the state
     saveToken: (state, action) => {
       state.token = action.payload.token;
       state.username = action.payload.username;
@@ -41,7 +38,7 @@ const user = createSlice({
       state.firstName = '';
       state.lastName = '';
       try {
-        localStorage.removeItem('token'); // Supprime le token du localStorage
+        localStorage.removeItem('token'); // Delete token from local storage
       } catch (e) {
         console.error('Could not remove from local storage:', e);
       }
@@ -50,7 +47,7 @@ const user = createSlice({
   }
 });
 
-// Exporting generated action creators to be used in components or middlewares
+// Exporting actions
 export const { saveToken, saveUserDetails, logoutUser } = user.actions;
 
 // Exporting the generated reducer function as default to be used in the Redux store
