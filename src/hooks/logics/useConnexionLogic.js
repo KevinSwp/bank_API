@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveToken } from "../../reducers/userReducer";
-// import userData from "../../data/data";
-// import useFetch from "../useFetch";
 
 const useConnexionLogic = (userName, userPassword) => {
   const navigate = useNavigate();
@@ -14,21 +12,11 @@ const useConnexionLogic = (userName, userPassword) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  //const { data, loading, error } = useFetch(
-  //  "http://localhost:3001/api/v1/user/login"
-  //);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const email = userName;
     const password = userPassword;
-
-    //if(conditions pour check email et password){}
-
-    //const user = userData.find(
-    //  (u) => u.email === email && u.password === password
-    //);
 
     fetch("http://localhost:3001/api/v1/user/login", {
       method: "POST",

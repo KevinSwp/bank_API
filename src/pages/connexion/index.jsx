@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from '../../components/nav/Navigation'
 import Footer from '../../components/footer/footer';
-// import Counter from '../../components/counter/Counter';
 import useConnexionLogic from '../../hooks/logics/useConnexionLogic';
 import './connexion.scss';
 
@@ -34,7 +33,6 @@ function Connexion() {
             <button type="submit">Sign In</button>
           </form>
         </div>
-        {/* <Counter /> */}
       </div>
       <Footer />
     </div>

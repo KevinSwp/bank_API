@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import Navigation from '../../components/nav/Navigation';
 import Footer from '../../components/footer/footer';
-// import Counter from '../../components/counter/Counter';
 
 import backgroundImg from './images/bank-tree.jpeg';
 import logoFeature1 from './images/icon-chat.png';
@@ -61,7 +60,6 @@ function Home() {
         </div>
       </section>
       <Footer />
-      {/* <Counter /> */}
     </div>
   );
 }
