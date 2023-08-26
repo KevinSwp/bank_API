@@ -8,14 +8,10 @@ const useProfilLogic = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // useState hook pour gérer l'état de visibilité d'un texte
-  const [textVisible, setTextVisible] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
-  const handleTextRemove = () => {
-    setTextVisible(false);
-  };
 
   const handleEditName = () => {
     fetch('http://localhost:3001/api/v1/user/profile', {
@@ -64,7 +60,7 @@ const useProfilLogic = () => {
       });
   }, [user, dispatch]);
 
-  return { user, textVisible, handleTextRemove, firstName, setFirstName, lastName, setLastName, handleEditName };
+  return { user, firstName, setFirstName, lastName, setLastName, handleEditName, isEditing, setIsEditing };
 };
 
 export default useProfilLogic;

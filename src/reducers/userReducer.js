@@ -33,12 +33,25 @@ const user = createSlice({
     saveUserDetails: (state, action) => {
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
+    },
+
+    logoutUser: (state) => {
+      state.token = '';
+      state.username = '';
+      state.firstName = '';
+      state.lastName = '';
+      try {
+        localStorage.removeItem('token'); // Supprime le token du localStorage
+      } catch (e) {
+        console.error('Could not remove from local storage:', e);
+      }
     }
+    
   }
 });
 
 // Exporting generated action creators to be used in components or middlewares
-export const { saveToken, saveUserDetails } = user.actions;
+export const { saveToken, saveUserDetails, logoutUser } = user.actions;
 
 // Exporting the generated reducer function as default to be used in the Redux store
 export default user.reducer;

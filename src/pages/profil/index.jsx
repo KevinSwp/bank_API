@@ -12,7 +12,9 @@ function Profil() {
     setFirstName,
     lastName,
     setLastName,
-    handleEditName
+    handleEditName,
+    isEditing,
+    setIsEditing
   } = useProfilLogic();
 
   return (
@@ -21,11 +23,39 @@ function Profil() {
 
       <main className="main bg-dark">
         <div className="header">
-          <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
-          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Prénom" />
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Nom" />
-          <button className="edit-button" onClick={handleEditName}>Edit Name</button>
+          <h1>Welcome back<br />
+            {
+              isEditing ? (
+                <>
+                  <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First name" />
+                  <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last name" />
+                </>
+              ) : (
+                `${user.firstName} ${user.lastName}`
+              )
+            }
+          </h1>
+
+          {
+            isEditing ? (
+              <>
+                <button className="edit-button" onClick={() => {
+                  handleEditName();
+                  setIsEditing(false);  // turn off editing mode after saving
+                }}>Save</button>
+                <button className="cancel-button" onClick={() => {
+                  // Reset the input values to the initial ones if needed
+                  setFirstName(user.firstName);
+                  setLastName(user.lastName);
+                  setIsEditing(false); // turn off editing mode
+                }}>Cancel</button>
+              </>
+            ) : (
+              <button className="edit-button" onClick={() => setIsEditing(true)}>Edit Name</button>
+            )
+          }
         </div>
+
         <section className="account">
           <div className="account-content-wrapper">
             <h3 className="account-title">Argent Bank Checking (x8349)</h3>
