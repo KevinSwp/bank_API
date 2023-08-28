@@ -7,8 +7,8 @@ const user = createSlice({
 
   // Initial state values for this slice
   initialState: {
-    token: '',           // To store the authentication token
-    username: '',        // To store the name of the authenticated user
+    token: '',           // Store the authentication token
+    username: '',        // Store the name of the authenticated user
   },
 
   reducers: {
@@ -23,7 +23,7 @@ const user = createSlice({
           'username': action.payload.username
         }));
       } catch (e) {
-        console.error('Could not save to local storage:', e);
+        console.error('Error cannot save token in local storage', e);
       }
     },
 
@@ -40,7 +40,7 @@ const user = createSlice({
       try {
         localStorage.removeItem('token'); // Delete token from local storage
       } catch (e) {
-        console.error('Could not remove from local storage:', e);
+        console.error('Error cannot remove token from local storage', e);
       }
     }
     

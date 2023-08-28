@@ -1,17 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../reducers/userReducer";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, /*useNavigate*/ } from "react-router-dom";
 import logo from './images/argentBankLogo.png';
 import './nav.scss';
 
 function Navigation() {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     const handleLogout = () => {
         dispatch(logoutUser());
-        navigate("/connexion"); 
+        // navigate("/connexion"); 
     }
 
     return (
@@ -36,7 +36,7 @@ function Navigation() {
                         ) : (
                             <>
                                 <li>
-                                    <NavLink to="/connexion">{user.firstName}</NavLink>
+                                    <NavLink to="/profil">{user.firstName}</NavLink>
                                 </li>
                                 <li>
                                     <i className="icon exit">

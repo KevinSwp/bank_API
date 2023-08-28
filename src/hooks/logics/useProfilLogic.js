@@ -41,12 +41,13 @@ const useProfilLogic = () => {
             firstName: data.body.firstName,
             lastName: data.body.lastName
           }));
-        } else {
-          console.error("Error updating the profile:", data.message);
+          console.log("User name updated!");
+      } else {
+        console.error("Failed to update", data.message);
         }
       })
       .catch(error => {
-        console.error("Error with the PUT request:", error);
+        console.error("Error PUT request:", error);
       });
   };
 
