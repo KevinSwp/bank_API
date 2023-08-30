@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import Navigation from '../../components/nav/Navigation';
-import Footer from '../../components/footer/footer';
+import Navigation from '../../components/layout/nav/Navigation';
+import Footer from '../../components/layout/footer/footer';
 
 import backgroundImg from './images/bank-tree.jpeg';
 import logoFeature1 from './images/icon-chat.png';

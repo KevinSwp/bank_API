@@ -1,8 +1,8 @@
 import React from 'react';
 
 import HeaderProfil from '../../components/headerProfil/HeaderProfil';
-import Navigation from '../../components/nav/Navigation'
-import Footer from '../../components/footer/footer';
+import Navigation from '../../components/layout/nav/Navigation'
+import Footer from '../../components/layout/footer/footer';
 
 import './profil.scss';
 

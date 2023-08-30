@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { logoutUser } from "../../reducers/userReducer";
+import { logoutUser } from "../../../reducers/userReducer";
 import { NavLink, /*useNavigate*/ } from "react-router-dom";
 import logo from './images/argentBankLogo.png';
 import './nav.scss';

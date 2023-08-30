@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navigation from '../../components/nav/Navigation'
-import Footer from '../../components/footer/footer';
+import Navigation from '../../components/layout/nav/Navigation'
+import Footer from '../../components/layout/footer/footer';
 import useConnexionLogic from '../../hooks/logics/useConnexionLogic';
 import './connexion.scss';
 
