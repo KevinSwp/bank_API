@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Navigation from '../../components/layout/nav/Navigation';
 import Footer from '../../components/layout/footer/footer';
@@ -13,12 +13,6 @@ import './home.scss';
  * Defining the Home component
  */
 function Home() {
-
-
-  useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('token'))
-    console.log(token)
-  }, [])
 
   return (
     <div className="home">

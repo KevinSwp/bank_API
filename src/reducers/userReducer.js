@@ -43,7 +43,6 @@ const user = createSlice({
         console.error('Error cannot remove token from local storage', e);
       }
     }
-    
   }
 });
 

@@ -3,6 +3,7 @@ import { logoutUser } from "../../../reducers/userReducer";
 import { NavLink, /*useNavigate*/ } from "react-router-dom";
 import logo from './images/argentBankLogo.png';
 import './nav.scss';
+import {ROUTES} from '../../../router/routes'
 
 function Navigation() {
     const user = useSelector((state) => state.user);
@@ -11,7 +12,7 @@ function Navigation() {
     
     const handleLogout = () => {
         dispatch(logoutUser());
-        // navigate("/connexion"); 
+        // navigate("/connexion");  
     }
 
     return (
@@ -31,7 +32,7 @@ function Navigation() {
                                     <path d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z" />
                                 </svg>
                                 </i>
-                                <NavLink to="/connexion">Sign In</NavLink>
+                                <NavLink to={ROUTES.login}>Sign In</NavLink>
                             </li>
                         ) : (
                             <>

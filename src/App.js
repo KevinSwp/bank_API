@@ -1,21 +1,26 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from './pages/home';
-import Connexion from './pages/connexion';
-import Profil from './pages/profil';
-import PrivateRoute from './hooks/routes/PrivateRoute';
-import './index.scss';
+import React, { useEffect } from 'react'
+import Router from './router'
+import { useDispatch } from "react-redux";
+import { saveToken } from './reducers/userReducer'; // make sure to put the correct path here
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/connexion" element={<Connexion />} />
-      <Route path="/profil" element={<PrivateRoute />}>
-        <Route index element={<Profil />} />
-      </Route>
-    </Routes>
-  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'))
+    if (token) {
+      dispatch(
+        saveToken({
+          token: token,
+          username: ``,
+        })
+      );
+    }
+  }, [dispatch])
+
+  return (<>
+    <Router />
+  </>)
 }
 
 export default App;
