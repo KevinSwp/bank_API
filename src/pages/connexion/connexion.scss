@@ -10,6 +10,12 @@
         width: 255px;
         margin: auto;
 
+        .error-alert {
+            text-align: center;
+            font-size: 0.9rem;
+            color: red;
+        }
+
         .form {
             i {
                 display: flex;
@@ -17,24 +23,24 @@
                 align-items: center;
                 height: 50px;
             }
-              
-              svg {
-                width: 20px;
-                height: 20px; 
-                }
 
-            h1{
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            h1 {
                 margin: auto;
                 font-size: 1.5em;
                 width: 80px;
             }
 
-            input{
+            input {
                 padding: 5px;
-    font-size: 1.2rem;
+                font-size: 1.2rem;
             }
 
-            .remember{
+            .remember {
                 font-weight: normal;
             }
 

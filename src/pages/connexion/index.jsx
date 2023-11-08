@@ -11,13 +11,14 @@ function Connexion() {
   
   const [username, setUsername] = useState('tony@stark.com');
   const [password, setPassword] = useState('password123');
-  const { handleSubmit } = useConnexionLogic(username, password);
+  const { handleSubmit, isError } = useConnexionLogic(username, password);
 
   return (
     <div>
       <Navigation />
       <div className='connexion'>
         <div className='connexionForm'>
+          {isError && <div className="error-alert">{isError}</div>}
           <form onSubmit={handleSubmit} className='form'>
             <i>
               <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

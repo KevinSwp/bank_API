@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Router from './router'
 import { useDispatch } from "react-redux";
-import { saveToken } from './reducers/userReducer'; // make sure to put the correct path here
+import { saveToken } from './reducers/userReducer';
 
 function App() {
   const dispatch = useDispatch();

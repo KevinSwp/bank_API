@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { saveUserDetails } from "../../reducers/userReducer";
 
@@ -35,42 +35,17 @@ const useProfilLogic = () => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.success) {
           // Update user details in the Redux store
           dispatch(saveUserDetails({
             firstName: data.body.firstName,
             lastName: data.body.lastName
           }));
           console.log("User name updated!");
-      } else {
-        console.error("Failed to update", data.message);
-        }
       })
       .catch(error => {
         console.error("Error PUT request:", error);
       });
   };
-
-  // Fetch user details on component mount
-  useEffect(() => {
-    fetch("http://localhost:3001/api/v1/user/profile", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Update user details in the Redux store
-        dispatch(saveUserDetails({
-          firstName: data.body.firstName,
-          lastName: data.body.lastName
-        }));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [user, dispatch]);
 
   return { user, firstName, setFirstName, lastName, setLastName, handleEditName, isEditing, setIsEditing };
 };

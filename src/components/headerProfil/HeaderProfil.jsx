@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useProfilLogic from '../../hooks/logics/useProfilLogic';
+import { useDispatch } from "react-redux";
+import { saveUserDetails } from "../../reducers/userReducer";
 
 function HeaderProfil() {
   const {
@@ -12,6 +14,28 @@ function HeaderProfil() {
     isEditing,
     setIsEditing
   } = useProfilLogic();
+  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/v1/user/profile", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Update user details in the Redux store
+        dispatch(saveUserDetails({
+          firstName: data.body.firstName,
+          lastName: data.body.lastName
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [dispatch, user.token]);
 
   return (
     <div className="header">

@@ -15,9 +15,9 @@ const useConnexionLogic = (userName, userPassword) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  // Local state for loading and error management.
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Local state for isLoading and error management.
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(null);
 
   /**
    * Handles the submission of the login form.
@@ -37,22 +37,29 @@ const useConnexionLogic = (userName, userPassword) => {
       },
       body: JSON.stringify({ email, password }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
 
-        // Dispatch the token received from the backend to the Redux store.
-        dispatch(
-          saveToken({
-            token: data.body.token,
-            username: ``,
-          })
-        );
-      })
-      .catch((error) => {
-        console.error(error);
-        setError(error);
-      });
+    .then((response) => {
+      if (!response.ok) throw new Error('Identifiant ou mot de passe invalide');
+      return response.json();
+    })
+
+    .then((data) => {
+      setIsLoading(false);
+      dispatch(
+        saveToken({
+          token: data.body.token,
+          username: ``,
+        })
+      );
+      // If success connection , reinit error.
+      setIsError(null);
+    })
+    
+    .catch((error) => {
+      console.error(error);
+      setIsLoading(false);
+      setIsError(error.message);
+    });
   };
 
   // Effect to navigate to the profile page if the user has a valid token.
@@ -62,7 +69,7 @@ const useConnexionLogic = (userName, userPassword) => {
     }
   }, [user, navigate]);
 
-  return { handleSubmit, loading, error };
+  return { handleSubmit, isLoading, isError };
 };
 
 export default useConnexionLogic;
