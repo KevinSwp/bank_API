@@ -9,8 +9,8 @@ import './connexion.scss';
  */
 function Connexion() {
   
-  const [username, setUsername] = useState('tony@stark.com');
-  const [password, setPassword] = useState('password123');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const { handleSubmit, isError } = useConnexionLogic(username, password);
 
   return (

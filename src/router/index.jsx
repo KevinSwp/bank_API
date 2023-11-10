@@ -3,11 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/home';
 import Connexion from '../pages/connexion';
 import Profil from '../pages/profil';
-import PrivateRoute from '../hooks/routes/PrivateRoute';
+import PrivateRoute from '../routes/PrivateRoute';
 import '../index.scss';
 import {ROUTES} from './routes' 
 
-export default function Router() {
+function Router() {
   return (
     <Routes>
       <Route path={ROUTES.home} element={<Home />} />
@@ -18,3 +18,5 @@ export default function Router() {
     </Routes> 
   ); 
 }
+
+export default Router;
